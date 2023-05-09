@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "lXj7vRyMV5VUgVX+tS1Ri0uVIzNRMi+6zzuWkurhiYk=",
+  "Source": "BoxMachineInventaryAPI",
+  "BasePath": "_content/BoxMachineInventaryAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
