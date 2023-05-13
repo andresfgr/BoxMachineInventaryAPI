@@ -1,10 +1,11 @@
 using BoxMachineInventary.Models;
 using Microsoft.EntityFrameworkCore;
+using MySql.EntityFrameworkCore.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<BoxMachineInventaryContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("CRUDCS")));
+builder.Services.AddEntityFrameworkMySQL().AddDbContext<BoxMachineInventaryContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection") ?? string.Empty));
 
 
 builder.Services.AddControllers();
