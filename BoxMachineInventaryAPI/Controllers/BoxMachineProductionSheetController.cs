@@ -1,11 +1,13 @@
 ﻿using BoxMachineInventary.EntityModels;
 using BoxMachineInventary.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace BoxMachineInventary.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]"), Authorize(Roles = "Admin")]
     [ApiController]
     public class BoxMachineProductionSheetController : ControllerBase
     {

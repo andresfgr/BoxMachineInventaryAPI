@@ -2,10 +2,11 @@
 using BoxMachineInventary.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BoxMachineInventary.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]"), Authorize(Roles = "Admin")]
     [ApiController]
     public class BoxSizeController : ControllerBase
     {

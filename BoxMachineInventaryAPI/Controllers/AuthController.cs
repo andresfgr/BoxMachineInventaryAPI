@@ -15,7 +15,7 @@ namespace BoxMachineInventaryAPI.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        public static User user = new User();
+        public static User user = new();
         private readonly IConfiguration _configuration;
         private readonly IUserService _userService;
 
@@ -32,21 +32,29 @@ namespace BoxMachineInventaryAPI.Controllers
             return Ok(userName);
         }
 
-        [HttpPost("register")]
-        public async Task<ActionResult<User>> Register(UserDto request)
-        {
-            CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
+        //[HttpPost("register")]
+        //public async Task<ActionResult<User>> Register(UserDto request)
+        //{
+        //    CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
-            user.Username = request.Username;
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
+        //    user.Username = request.Username;
+        //    user.PasswordHash = passwordHash;
+        //    user.PasswordSalt = passwordSalt;
 
-            return Ok(user);
-        }
+        //    return Ok(user);
+        //}
 
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(UserDto request)
         {
+            //register
+            CreatePasswordHash("1234", out byte[] passwordHash, out byte[] passwordSalt);
+
+            user.Username = "customer";
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+            //end register
+
             if (user.Username != request.Username)
             {
                 return BadRequest("User not found.");
