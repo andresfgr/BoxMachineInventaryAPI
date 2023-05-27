@@ -45,7 +45,7 @@ namespace BoxMachineInventaryAPI.Controllers
         //}
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(UserDto request)
+        public async Task<ActionResult<ResultDTO>> Login(UserDto request)
         {
             //register
             CreatePasswordHash("1234", out byte[] passwordHash, out byte[] passwordSalt);
@@ -57,12 +57,12 @@ namespace BoxMachineInventaryAPI.Controllers
 
             if (user.Username != request.Username)
             {
-                return BadRequest("User not found.");
+                return Ok(new ResultDTO { Message = "User not found." });
             }
 
             if (!VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
             {
-                return BadRequest("Wrong password.");
+                return Ok(new ResultDTO { Message = "Wrong password." });
             }
 
             string token = CreateToken(user);
@@ -70,7 +70,7 @@ namespace BoxMachineInventaryAPI.Controllers
             var refreshToken = GenerateRefreshToken();
             SetRefreshToken(refreshToken);
 
-            return Ok(token);
+            return Ok(new ResultDTO { IsAuthorized = true, Message = token });
         }
 
         [HttpPost("refresh-token")]
